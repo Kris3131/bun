@@ -8,6 +8,13 @@ const server = Bun.serve({
     }
     throw new Error('woops!');
   },
+  error(error) {
+    return new Response(`<pre>${error}\n${error.stack}</pre>`, {
+      headers: {
+        'Content-Type': 'text/html',
+      },
+    });
+  },
 });
 
 console.log(`Listening on http://localhost:${server.port}`);
