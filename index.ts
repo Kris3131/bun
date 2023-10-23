@@ -1,9 +1,12 @@
+import sayHello from './hello';
+
 const server = Bun.serve({
   port: Bun.env.PORT, // Or use process.env
   development: true,
   fetch(req) {
     const url = new URL(req.url);
     if (url.pathname === '/') {
+      sayHello();
       return new Response('Bun');
     }
     throw new Error('woops!');
